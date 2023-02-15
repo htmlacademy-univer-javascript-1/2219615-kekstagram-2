@@ -13,4 +13,4 @@ function getRandomInt(from, to){
   return Math.round(Math.random() * (to - from) + from);
 }
 
-
+const isCorrectLength = (str, maxLength) => str.length <= maxLength;
