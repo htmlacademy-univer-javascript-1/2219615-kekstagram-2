@@ -14,3 +14,5 @@ function getRandomInt(from, to){
 }
 
 const isCorrectLength = (str, maxLength) => str.length <= maxLength;
+
+export {getRandomInt, isCorrectLength}; // для того чтобы линтер не ругался
