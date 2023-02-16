@@ -1,4 +1,4 @@
-import {getRandomInt} from './util';
+import {getRandomInt} from './util.js';
 
 const PHOTOS_COUNT = 25;
 const NAMES = ['Дима', 'Олежа', 'Дементий', 'Егор', 'Эдик'];
