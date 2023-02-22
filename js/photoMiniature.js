@@ -8,7 +8,7 @@ export function insertPhotoMiniature(descriptions) {
   for (const desc of descriptions) {
     const picture = pictureTemplate.cloneNode(true).content;
     picture.querySelector('.picture__img').src = desc.url;
-    picture.querySelector('.picture__img').addEventListener('click', (ev) => {
+    picture.querySelector('.picture').addEventListener('click', (ev) => {
       ev.preventDefault();
       showBigPicture(desc);
     });
