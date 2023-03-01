@@ -15,7 +15,7 @@ export function getRandomInt(from, to) {
   return Math.round(Math.random() * (to - from) + from);
 }
 
-export function getCloseListers(modal, closeButton, callback){
+export function getCloseListeners(modal, closeButton, callback){
   const closeOnEscape = (ev) => ev.key === 'Escape' && closeModal();
   function closeModal(){
     if (callback){
