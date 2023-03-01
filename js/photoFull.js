@@ -3,8 +3,11 @@ import {getCloseListeners} from './util.js';
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = bigPicture.querySelector('#picture-cancel');
 const avatarImageSize = 35;
-const [closeBigPicture, closeEscape] = getCloseListeners(bigPicture, closeButton);
 let updateComments;
+const [closeBigPicture, closeEscape] = getCloseListeners(bigPicture, closeButton, () => {
+  bigPicture.querySelector('.social__comments-loader').removeEventListener('click', updateComments);
+});
+
 
 function getCommentsUpdater(commentsContainer, commentsCounter, commentsButton, comments) {
   const loadComments = (() => {
