@@ -1,7 +1,10 @@
-const bigPicture = document.querySelector('.big-picture');
-bigPicture.querySelector('#picture-cancel').addEventListener('click', closeBigPicture);
+import {getCloseListers} from './util.js';
 
-const escapePressed = (ev) => ev.key === 'Escape' && closeBigPicture();
+const bigPicture = document.querySelector('.big-picture');
+const closeButton = bigPicture.querySelector('#picture-cancel');
+const [closeBigPicture, closeEscape] = getCloseListers(bigPicture, closeButton);
+
+const avatarImageSize = 35;
 
 function createBigPicture({url, likes, description, comments}){
   bigPicture.querySelector('.big-picture__img').children[0].src = url;
@@ -15,8 +18,8 @@ function createBigPicture({url, likes, description, comments}){
     avatarImg.classList.add('social__picture');
     avatarImg.src = avatar;
     avatarImg.alt = name;
-    avatarImg.width = 35;
-    avatarImg.height = 35;
+    avatarImg.width = avatarImageSize;
+    avatarImg.height = avatarImageSize;
     const commentText = document.createElement('p');
     commentText.classList.add('social__text');
     commentText.textContent = message;
@@ -34,11 +37,7 @@ export function showBigPicture(picture){
   bigPicture.querySelector('.comments-loader').classList.add('hidden');
   document.body.classList.add('modal-open');
   bigPicture.classList.remove('hidden');
-  document.addEventListener('keydown', (ev) => escapePressed(ev));
+  document.addEventListener('keydown', closeEscape);
+  closeButton.addEventListener('click', closeBigPicture);
 }
 
-function closeBigPicture(){
-  bigPicture.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', escapePressed);
-}

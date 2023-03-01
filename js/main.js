@@ -1,9 +1,9 @@
 import {generateDescription, PHOTOS_COUNT} from './data.js';
-import {isCorrectLength} from './util.js';
 import {insertPhotoMiniature} from './photoMiniature.js';
+import {showFileForm} from './form.js';
 
 const descriptions = Array.from({length: PHOTOS_COUNT}, generateDescription);
 insertPhotoMiniature(descriptions);
 
-isCorrectLength(descriptions, PHOTOS_COUNT); // Чтобы eslint не ругался
+document.querySelector('#upload-file').addEventListener('change', showFileForm);
 
