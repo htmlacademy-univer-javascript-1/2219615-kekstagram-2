@@ -5,7 +5,6 @@ import {showFileForm} from './form.js';
 //const descriptions = Array.from({length: PHOTOS_COUNT}, generateDescription);
 //insertPhotoMiniature(descriptions);
 getMiniatures()
-  .then(insertPhotoMiniature)
-  .catch(console.error);
+  .then(insertPhotoMiniature);
 document.querySelector('#upload-file').addEventListener('change', showFileForm);
 

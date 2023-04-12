@@ -17,18 +17,12 @@ export function getRandomInt(from, to) {
 
 export function useOnEscape(elem, callback, prioritise) {
 
-  const action = (ev) => {
-    console.log(document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17)));
-
-    return document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17))
-      .filter((p) => p > prioritise).length === 0 &&
+  const action = (ev) => document.body.classList.toString().split(' ')
+    .filter((p) => p.startsWith('modal-prioritise'))
+    .map((p) => +p.slice(17))
+    .filter((p) => p > prioritise).length === 0 &&
     ev.key === 'Escape' &&
     callback();
-  }
   const setEvent = () => {
     document.addEventListener('keydown', action);
     document.body.classList.add(`modal-prioritise-${prioritise}`);
@@ -41,17 +35,11 @@ export function useOnEscape(elem, callback, prioritise) {
 }
 
 export function getCloseListeners(modal, closeButton, callback) {
-  const closeOnEscape = (ev) => {
-    console.log(document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17)));
-
-    document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17))
-      .filter((p) => p > 1).length === 0 &&
+  const closeOnEscape = (ev) => document.body.classList.toString().split(' ')
+    .filter((p) => p.startsWith('modal-prioritise'))
+    .map((p) => +p.slice(17))
+    .filter((p) => p > 1).length === 0 &&
     ev.key === 'Escape' && closeModal();
-  }
 
   function closeModal() {
     if (callback) {

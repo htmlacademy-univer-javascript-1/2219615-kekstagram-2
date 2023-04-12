@@ -25,7 +25,6 @@ function submitForm(ev) {
   if (!validator.validate()) {
     return;
   }
-  console.log(ev);
   sendForm(new FormData(ev.target))
     .then((r) => r.json())
     .then(() => showSuccessSection())
