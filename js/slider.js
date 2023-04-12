@@ -59,6 +59,7 @@ export function addSliderListeners() {
 export function deleteSliderListeners(){
   defaultButton.removeEventListener('click', deleteEffect);
   effectButtons.forEach((btn) => btn.removeEventListener('click', applyEffect));
+  deleteEffect();
 }
 
 

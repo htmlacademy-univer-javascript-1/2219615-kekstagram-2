@@ -6,9 +6,6 @@ export async function getMiniatures(){
 export async function sendForm(body){
   return fetch('https://26.javascript.pages.academy/kekstagram', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    },
     body: body
   });
 }
