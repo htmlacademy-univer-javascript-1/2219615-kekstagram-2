@@ -1,7 +1,8 @@
-import {getCloseListeners, trimField} from './util.js';
+import {getCloseListeners, trimField, stopPropagation} from './util.js';
 import {validator} from './form-validation.js';
 import {addSliderListeners, deleteSliderListeners} from './slider.js';
-
+import {sendForm} from './api.js';
+import {showErrorSection, showSuccessSection} from './message.js';
 
 const overlay = document.querySelector('.img-upload__overlay');
 const img = overlay.querySelector('img');
@@ -17,12 +18,18 @@ const scaleValueMin = 25;
 const scaleValueMax = 100;
 
 const trimFieldOnChange = (ev) => trimField(ev.target);
-const stopPropogation = (ev) => ev.stopPropagation();
+//const stopPropagation = (ev) => ev.stopPropagation();
 
 function submitForm(ev) {
+  ev.preventDefault();
   if (!validator.validate()) {
-    ev.preventDefault();
+    return;
   }
+  sendForm(new FormData(ev.target))
+    .then((r) => r.json())
+    .then(() => showSuccessSection())
+    .then(() => closeForm())
+    .catch(() => showErrorSection());
 }
 
 function changeScale(ev) {
@@ -42,9 +49,9 @@ function clearForm() {
   deleteSliderListeners();
   form.removeEventListener('submit', submitForm);
   hashtagField.removeEventListener('change', trimFieldOnChange);
-  hashtagField.removeEventListener('keydown', stopPropogation);
+  hashtagField.removeEventListener('keydown', stopPropagation);
   descField.removeEventListener('change', trimFieldOnChange);
-  descField.removeEventListener('keydown', stopPropogation);
+  descField.removeEventListener('keydown', stopPropagation);
   img.className = 'scale-100';
 }
 
@@ -55,11 +62,12 @@ export function showFileForm() {
   });
   addSliderListeners();
   hashtagField.addEventListener('change', trimFieldOnChange);
-  hashtagField.addEventListener('keydown', stopPropogation);
+  hashtagField.addEventListener('keydown', stopPropagation);
   descField.addEventListener('change', trimFieldOnChange);
-  descField.addEventListener('keydown', stopPropogation);
+  descField.addEventListener('keydown', stopPropagation);
   closeButton.addEventListener('click', closeForm);
-  document.addEventListener('keydown', closeEscape);
+  document.body.addEventListener('keydown', closeEscape);
   overlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  document.body.classList.add('modal-prioritise-1');
 }
