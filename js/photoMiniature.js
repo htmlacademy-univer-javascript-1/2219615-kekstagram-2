@@ -18,3 +18,7 @@ export function insertPhotoMiniature(descriptions) {
   }
   pictureContainer.appendChild(pictureFragment);
 }
+
+export function clearPhotoMiniature(){
+  pictureContainer.querySelectorAll('.picture').forEach((p) => p.remove());
+}
