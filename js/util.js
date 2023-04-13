@@ -18,9 +18,9 @@ export function getRandomInt(from, to) {
 export function useOnEscape(elem, callback, prioritise) {
 
   const action = (ev) => document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17))
-      .filter((p) => p > prioritise).length === 0 &&
+    .filter((p) => p.startsWith('modal-prioritise'))
+    .map((p) => +p.slice(17))
+    .filter((p) => p > prioritise).length === 0 &&
     ev.key === 'Escape' &&
     callback();
   const setEvent = () => {
@@ -36,9 +36,9 @@ export function useOnEscape(elem, callback, prioritise) {
 
 export function getCloseListeners(modal, closeButton, callback) {
   const closeOnEscape = (ev) => document.body.classList.toString().split(' ')
-      .filter((p) => p.startsWith('modal-prioritise'))
-      .map((p) => +p.slice(17))
-      .filter((p) => p > 1).length === 0 &&
+    .filter((p) => p.startsWith('modal-prioritise'))
+    .map((p) => +p.slice(17))
+    .filter((p) => p > 1).length === 0 &&
     ev.key === 'Escape' && closeModal();
 
   function closeModal() {
