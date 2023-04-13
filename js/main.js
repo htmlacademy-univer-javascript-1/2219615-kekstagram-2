@@ -5,7 +5,7 @@ import {showFilters} from './filters.js';
 
 //const descriptions = Array.from({length: PHOTOS_COUNT}, generateDescription);
 //insertPhotoMiniature(descriptions);
-const fileInput = document.querySelector('#upload-file')
+const fileInput = document.querySelector('#upload-file');
 const preview = document.querySelector('.img-upload__preview').querySelector('img');
 
 getMiniatures()
